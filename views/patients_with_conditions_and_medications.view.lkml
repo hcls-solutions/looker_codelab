@@ -36,4 +36,9 @@ view: patients_with_conditions_and_medications {
     drill_fields: [lastname]
   }
 
+  measure: num_of_patients {
+    type: count
+    drill_fields: [patient_id]
+  }
+
 }
