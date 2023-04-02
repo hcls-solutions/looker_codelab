@@ -39,7 +39,28 @@ view: patient_vital_info {
     type: number
     sql: ${TABLE}.value ;;
   }
+  dimension: RoundedValue {
+    type: number
+    sql: round(${value},2);;
+  }
 
+  measure: DIA {
+    type: average
+    sql:
+     CASE
+       WHEN ${patient_vital_info.measurement} like "%Diastolic%"
+       THEN round(${value},0)
+     END;;
+  }
+
+  measure: SYS {
+    type: average
+    sql:
+     CASE
+       WHEN ${patient_vital_info.measurement} like "%Systolic%"
+       THEN round(${value},0)
+     END;;
+  }
 
   measure: count {
     type: count
